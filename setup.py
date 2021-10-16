@@ -1,12 +1,18 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r") as fh:
+    long_description = fh.read()
+
 setup(
-    name='django-ckeditor-s3',
-    version='0.1.0',
+    name='ckeditor5-labtrendig',
+    version='0.1.1',
     description='CKEditor 5 for django labtrendig to s3.',
     url='https://github.com/LabTrendig/django_ckeditor_5',
     author='josuedjh',
     author_email='josuedjhcayola@outlook.com',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    packages=find_packages(exclude=["*example*"]),
     license='BSD 2-clause',
     classifiers=[
         'Programming Language :: Python :: 3.5',
