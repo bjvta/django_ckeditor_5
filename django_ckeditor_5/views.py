@@ -60,7 +60,7 @@ def upload_file(request):
                 }
             })
         if form.is_valid():
-            if settings.DEBUG is True:
+            if settings.DEBUG is False:
                 url = upload_s3(file=request.FILES['upload'])
             else:
                 url = handle_uploaded_file(request.FILES['upload'])
