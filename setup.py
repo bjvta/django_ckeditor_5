@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name='ckeditor5-labtrendig',
-    version='0.1.1',
+    name='ckeditor5labtrendig',
+    version='0.5.0',
     description='CKEditor 5 for django labtrendig to s3.',
     url='https://github.com/LabTrendig/django_ckeditor_5',
     author='josuedjh',
