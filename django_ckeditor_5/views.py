@@ -5,9 +5,9 @@ from django.utils.module_loading import import_string
 from django.utils.translation import ugettext_lazy as _
 from django.http import JsonResponse
 from django.conf import settings
+from .storage import StaticEditStorage
 
 from .forms import UploadFileForm
-from .storage import StaticEditStorage
 from PIL import Image
 
 
@@ -23,9 +23,9 @@ def get_storage_class():
 
 storage = get_storage_class()
 
-media_storage = StaticEditStorage()
 
 def upload_s3(file):
+    media_storage = StaticEditStorage()
     folder = getattr(settings, 'CKEDITOR_5_UPLOADS_FOLDER', 'django_ckeditor_5')
     path = f"{folder}/{file.name}"
     media_storage.save(path, file)
