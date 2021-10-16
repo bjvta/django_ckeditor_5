@@ -9,16 +9,16 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-ckeditor-5',
-    version='0.0.14',
+    version='0.1',
     packages=find_packages(),
     include_package_data=True,
     license='BSD License',
-    description='CKEditor 5 for django.',
+    description='CKEditor 5 for django labtrendig to s3.',
     long_description=README,
     long_description_content_type='text/x-rst',
-    url='https://github.com/hvlads/django-ckeditor-5',
-    author='Vladislav Khoboko',
-    author_email='vladislah@gmail.com',
+    url='https://github.com/LabTrendig/django_ckeditor_5',
+    author='josuedjh',
+    author_email='josuedjhcayola@outlook.com',
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
