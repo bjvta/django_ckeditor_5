@@ -5,7 +5,9 @@ from django.utils.module_loading import import_string
 from django.utils.translation import ugettext_lazy as _
 from django.http import JsonResponse
 from django.conf import settings
+
 from .forms import UploadFileForm
+from .storage import StaticEditStorage
 from PIL import Image
 
 
@@ -20,6 +22,15 @@ def get_storage_class():
 
 
 storage = get_storage_class()
+
+media_storage = StaticEditStorage()
+
+def upload_s3(file):
+    folder = getattr(settings, 'CKEDITOR_5_UPLOADS_FOLDER', 'django_ckeditor_5')
+    path = f"{folder}/{file.name}"
+    media_storage.save(path, file)
+    file_url = media_storage.url(path)
+    return file_url
 
 
 def image_verify(f):
@@ -49,6 +60,9 @@ def upload_file(request):
                 }
             })
         if form.is_valid():
-            url = handle_uploaded_file(request.FILES['upload'])
+            if settings.DEBUG is True:
+                url = upload_s3(file=request.FILES['upload'])
+            else:
+                url = handle_uploaded_file(request.FILES['upload'])
             return JsonResponse({'url': url})
     raise Http404(_('Page not found.'))

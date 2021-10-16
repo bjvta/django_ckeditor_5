@@ -3,12 +3,18 @@ Django CKEditor 5
 
    CKEditor 5 for Django >= 2.0
 
+
 Quick start
 -----------
 
  .. code-block:: bash
  
         pip install django-ckeditor-5
+
+*** S3
+
+AWS_STORAGE_BUCKET_NAME
+AWS_PUBLIC_MEDIA_LOCATION
 
 1. Add "django_ckeditor_5" to your INSTALLED_APPS setting like this:
 
