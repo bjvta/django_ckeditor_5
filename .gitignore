@@ -20,3 +20,4 @@ example/blog/articles/migrations/*
 example/blog/static/*
 example/blog/media/*
 example/django_ckeditor_5
+.pypirc

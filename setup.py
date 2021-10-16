@@ -1,36 +1,14 @@
-import os
-from setuptools import find_packages, setup
-
-with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
-    README = readme.read()
-
-# allow setup.py to be run from any path
-os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
+from setuptools import setup, find_packages
 
 setup(
-    name='django-ckeditor-5',
-    version='0.1',
-    packages=find_packages(),
-    include_package_data=True,
-    license='BSD License',
+    name='django-ckeditor-s3',
+    version='0.1.0',
     description='CKEditor 5 for django labtrendig to s3.',
-    long_description=README,
-    long_description_content_type='text/x-rst',
     url='https://github.com/LabTrendig/django_ckeditor_5',
     author='josuedjh',
     author_email='josuedjhcayola@outlook.com',
+    license='BSD 2-clause',
     classifiers=[
-        'Environment :: Web Environment',
-        'Framework :: Django',
-        'Framework :: Django :: 2.2',
-        'Framework :: Django :: 3.0',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
         'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Topic :: Internet :: WWW/HTTP',
-        'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
 )
