@@ -5,7 +5,9 @@ from django.utils.module_loading import import_string
 from django.utils.translation import ugettext_lazy as _
 from django.http import JsonResponse
 from django.conf import settings
+from django.core.files import File
 from .storage import StaticEditStorage
+from io import BytesIO
 
 from .forms import UploadFileForm
 from PIL import Image
@@ -31,6 +33,15 @@ def upload_s3(file):
     media_storage.save(path, file)
     file_url = media_storage.url(path)
     return file_url
+
+def compress(image):
+    im = Image.open(image)
+    im_io = BytesIO() 
+    #im = im.resize([500,500])
+    im = im.convert("RGB")
+    im = im.save(im_io,'JPEG', quality=75) 
+    new_image = File(im_io, name=f"{image.name}.jpeg")
+    return new_image
 
 
 def image_verify(f):
@@ -60,9 +71,10 @@ def upload_file(request):
                 }
             })
         if form.is_valid():
+            file = compress(request.FILES['upload'])
             if settings.DEBUG is False:
-                url = upload_s3(file=request.FILES['upload'])
+                url = upload_s3(file=file)
             else:
-                url = handle_uploaded_file(request.FILES['upload'])
+                url = handle_uploaded_file(file)
             return JsonResponse({'url': url})
     raise Http404(_('Page not found.'))
